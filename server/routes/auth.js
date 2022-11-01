@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models").userModel;
 const registerValidation = require("../validation").registerValidation;
+const loginValidation = require("../validation").loginValidation;
 
 router.use((req, res, next) => {
   console.log("A Request is coming into Auth");
@@ -32,10 +33,17 @@ router.post("/register", async (req, res) => {
   });
 
   try {
-    let SavedUser = await newUser.save();
+    const SavedUser = await newUser.save();
     return res.status(200).send({ user: SavedUser });
   } catch (err) {
     return res.status(400).send({ message: "Something went wrong" });
   }
+});
+
+router.post("/login", async (req, res) => {
+  const { error } = loginValidation(req.body);
+  if (error) return res.status(400).send({ message: error });
+
+  let foundedUser = await User.findOne({ email: req.body.email });
 });
 module.exports = router;
