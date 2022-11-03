@@ -1,0 +1,78 @@
+import React, { useState } from "react";
+import AuthService from "../services/auth.service";
+import { useNavigate } from "react-router-dom";
+
+const LoginComponent = (props) => {
+  let { currentUser, setCurrentUser } = props;
+  const navigate = useNavigate();
+  let [message, setMessage] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleLogin = () => {
+    AuthService.login(email, password)
+      .then((response) => {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            token: response.data.token,
+            user: {
+              username: response.data.username,
+              email: response.response.email,
+              role: response.data.role,
+              _id: response.data._id,
+            },
+          })
+        );
+        setCurrentUser(AuthService.getCurrentUser());
+        navigate("/");
+      })
+      .catch((error) => {
+        setMessage(error.response.data);
+      });
+  };
+  return (
+    <div style={{ padding: "3rem" }} className="col-md-12">
+      <div>
+        {message && (
+          <div className="alert alert-danger" role="alert">
+            {message}
+          </div>
+        )}
+        <div className="form-group">
+          <label htmlFor="username">Email</label>
+          <input
+            onChange={handleChangeEmail}
+            type="text"
+            className="form-control"
+            name="email"
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            onChange={handleChangePassword}
+            type="password"
+            className="form-control"
+            name="password"
+          />
+        </div>
+        <br />
+        <div className="form-group">
+          <button onClick={handleLogin} className="btn btn-primary btn-block">
+            <span>Login</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginComponent;
