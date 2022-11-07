@@ -21,15 +21,10 @@ const LoginComponent = (props) => {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            token: response.data.token,
-            user: {
-              username: response.data.username,
-              email: response.response.email,
-              role: response.data.role,
-              _id: response.data._id,
-            },
+            user: response.data,
           })
         );
+
         setCurrentUser(AuthService.getCurrentUser());
         navigate("/");
       })
