@@ -64,7 +64,7 @@ const NavComponent = (props) => {
                 {currentUser && (
                   <div>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/course">
+                      <Link className="nav-link" to="/commodity">
                         Commodity
                       </Link>
                     </li>
@@ -73,18 +73,11 @@ const NavComponent = (props) => {
                 {currentUser && currentUser.user.role === "seller" && (
                   <div>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/postCourse">
+                      <Link className="nav-link" to="/postCommodity">
                         Post Commodity
                       </Link>
                     </li>
                   </div>
-                )}
-                {currentUser && currentUser.user.role === "customer" && (
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/enroll">
-                      Search Goods
-                    </Link>
-                  </li>
                 )}
               </ul>
             </div>
