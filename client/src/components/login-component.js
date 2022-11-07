@@ -21,7 +21,7 @@ const LoginComponent = (props) => {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            user: response.data,
+            user: response.data.user,
           })
         );
 

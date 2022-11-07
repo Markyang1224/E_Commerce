@@ -12,6 +12,7 @@ const NavComponent = (props) => {
     setCurrentUser(null);
     navigate("/");
   };
+
   return (
     <div>
       <nav>
@@ -64,24 +65,24 @@ const NavComponent = (props) => {
                   <div>
                     <li className="nav-item">
                       <Link className="nav-link" to="/course">
-                        Course
+                        Commodity
                       </Link>
                     </li>
                   </div>
                 )}
-                {currentUser && currentUser.user.role === "instructor" && (
+                {currentUser && currentUser.user.role === "seller" && (
                   <div>
                     <li className="nav-item">
                       <Link className="nav-link" to="/postCourse">
-                        Post Course
+                        Post Commodity
                       </Link>
                     </li>
                   </div>
                 )}
-                {currentUser && currentUser.user.role === "student" && (
+                {currentUser && currentUser.user.role === "customer" && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/enroll">
-                      Enroll
+                      Search Goods
                     </Link>
                   </li>
                 )}
