@@ -29,7 +29,7 @@ const RegisterComponent = () => {
         navigate("/login");
       })
       .catch((error) => {
-        setMessage(error);
+        setMessage(error.response.data);
       });
   };
   return (
@@ -69,7 +69,7 @@ const RegisterComponent = () => {
         </div>
         <br />
         <div className="form-group">
-          <label htmlFor="password">role</label>
+          <label htmlFor="role">role</label>
           <input
             onChange={handleChangerole}
             type="text"

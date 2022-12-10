@@ -16,7 +16,8 @@ router.get("/testApi", (req, res) => {
 router.post("/register", async (req, res) => {
   //check the validation of data
   let { error } = registerValidation(req.body);
-  if (error) return res.status(200).send(error.details[0].message);
+
+  if (error) return res.status(400).send(error.details[0].message);
 
   let emailExist = await User.findOne({ email: req.body.email });
 
@@ -43,7 +44,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { error } = loginValidation(req.body);
-  if (error) return res.status(400).send({ "error message": error });
+  if (error) return res.status(400).send(error.details[0].message);
 
   let user = await User.findOne({ email: req.body.email });
   if (!user) {

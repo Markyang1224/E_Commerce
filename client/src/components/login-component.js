@@ -30,6 +30,7 @@ const LoginComponent = (props) => {
       })
       .catch((error) => {
         setMessage(error.response.data);
+        console.log(error.response.data);
       });
   };
   return (
