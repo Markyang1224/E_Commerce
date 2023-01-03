@@ -25,6 +25,8 @@ const PostCommodityComponent = (props) => {
     CommodityService.postCommodity(name, description, price)
       .then((res) => {
         console.log("success");
+        alert("post success");
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);

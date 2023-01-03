@@ -64,7 +64,7 @@ const NavComponent = (props) => {
                 {currentUser && currentUser.user.role === "customer" && (
                   <div>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/commodity">
+                      <Link className="nav-link" to="/collection">
                         Collection
                       </Link>
                     </li>
@@ -73,7 +73,7 @@ const NavComponent = (props) => {
                 {currentUser && currentUser.user.role === "customer" && (
                   <div>
                     <li className="nav-item">
-                      <Link className="nav-link" to="/commodity">
+                      <Link className="nav-link" to="/search">
                         Search
                       </Link>
                     </li>

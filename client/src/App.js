@@ -6,6 +6,7 @@ import NavComponent from "./components/nav-component";
 import PostCommodityComponent from "./components/postCommodity-component";
 import ProfileComponent from "./components/profile-component";
 import RegisterComponent from "./components/register-component";
+import SearchComponent from "./components/search-component";
 import AuthService from "./services/auth.service";
 
 function App() {
@@ -42,6 +43,16 @@ function App() {
           path="/postCommodity"
           element={
             <PostCommodityComponent
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
+          }
+        />
+        <Route
+          exact
+          path="/search"
+          element={
+            <SearchComponent
               currentUser={currentUser}
               setCurrentUser={setCurrentUser}
             />

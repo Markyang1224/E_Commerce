@@ -18,13 +18,9 @@ const LoginComponent = (props) => {
   const handleLogin = () => {
     AuthService.login(email, password)
       .then((response) => {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            user: response.data.user,
-          })
-        );
-
+        if (response.data) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+        }
         setCurrentUser(AuthService.getCurrentUser());
         navigate("/");
       })
